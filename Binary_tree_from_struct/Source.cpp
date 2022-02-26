@@ -4,10 +4,10 @@
 using namespace std;
 struct node {
 	int key = 0;
-	string name = "Безымянный";
-	string description = "Без описания";
+	string name = "ГЃГҐГ§Г»Г¬ГїГ­Г­Г»Г©";
+	string description = "ГЃГҐГ§ Г®ГЇГЁГ±Г Г­ГЁГї";
 	void info() {
-		cout <<"Ключ: " << key <<",\t имя: " << name <<",\t\t описание: " << description << endl;
+		cout <<"ГЉГ«ГѕГ·: " << key <<",\t ГЁГ¬Гї: " << name <<",\t\t Г®ГЇГЁГ±Г Г­ГЁГҐ: " << description << endl;
 	}
 	void set_info(int k, string n, string d) {
 		key = k;
@@ -20,24 +20,25 @@ typedef node* pnode;
 typedef set<node> TreeStruct;
 typedef TreeStruct::iterator NodeIter;
 
-//Используем встроенную функцию для сравнения ключей элементов добавляемых в множество set
-//Все элементы добавляемые в set сортируются, поэтому необходимо знать порядок их следования при insert
+//Г€Г±ГЇГ®Г«ГјГ§ГіГҐГ¬ ГўГ±ГІГ°Г®ГҐГ­Г­ГіГѕ ГґГіГ­ГЄГ¶ГЁГѕ Г¤Г«Гї Г±Г°Г ГўГ­ГҐГ­ГЁГї ГЄГ«ГѕГ·ГҐГ© ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¤Г®ГЎГ ГўГ«ГїГҐГ¬Г»Гµ Гў Г¬Г­Г®Г¦ГҐГ±ГІГўГ® set
+//Г‚Г±ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г¤Г®ГЎГ ГўГ«ГїГҐГ¬Г»ГҐ Гў set Г±Г®Г°ГІГЁГ°ГіГѕГІГ±Гї, ГЇГ®ГЅГІГ®Г¬Гі Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г® Г§Г­Г ГІГј ГЇГ®Г°ГїГ¤Г®ГЄ ГЁГµ Г±Г«ГҐГ¤Г®ГўГ Г­ГЁГї ГЇГ°ГЁ insert
 inline bool operator<(const node& lhs, const node& rhs) {
 	return lhs.key < rhs.key;
 }
+
 
 pnode maketree(node obj[], int from, int n) {
 	pnode tree;
 	int n1, n2;
 
-	if (n == 0) return NULL;//граница выхода из рекурсии
+	if (n == 0) return NULL;//ГЈГ°Г Г­ГЁГ¶Г  ГўГ»ГµГ®Г¤Г  ГЁГ§ Г°ГҐГЄГіГ°Г±ГЁГЁ
 
 	tree = new node;
 	/*tree->key = obj[from].key;
 	tree->name = obj[from].name;
 	tree->description = obj[from].description;*/
 
-	tree->set_info(obj[from].key, obj[from].name, obj[from].description);//Вызываем метод из структуры для заполнения данных
+	tree->set_info(obj[from].key, obj[from].name, obj[from].description);//Г‚Г»Г§Г»ГўГ ГҐГ¬ Г¬ГҐГІГ®Г¤ ГЁГ§ Г±ГІГ°ГіГЄГІГіГ°Г» Г¤Г«Гї Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГї Г¤Г Г­Г­Г»Гµ
 
 	n1 = n / 2;
 	n2 = n - n1 - 1;
@@ -74,7 +75,7 @@ void convertToBST(node* root, NodeIter& it, NodeIter& end_it)
 	convertToBST(root->left, it,end_it);
 	if (it != end_it) {
 		root->key = it->key;
-		root->name = (*it).name;//ещё один из варианта обращения к полю
+		root->name = (*it).name;//ГҐГ№Вё Г®Г¤ГЁГ­ ГЁГ§ ГўГ Г°ГЁГ Г­ГІГ  Г®ГЎГ°Г Г№ГҐГ­ГЁГї ГЄ ГЇГ®Г«Гѕ
 		it++;
 	}
 	convertToBST(root->right, it,end_it);
@@ -100,16 +101,16 @@ void print_lkp(pnode& tree) {
 }
 pnode Search(pnode Tree, int what)
 {
-	if (!Tree) return NULL; // ключ не найден
-	if (what == Tree->key) return Tree; // ключ найден!
-	if (what < Tree->key) // искать в поддеревьях
+	if (!Tree) return NULL; // ГЄГ«ГѕГ· Г­ГҐ Г­Г Г©Г¤ГҐГ­
+	if (what == Tree->key) return Tree; // ГЄГ«ГѕГ· Г­Г Г©Г¤ГҐГ­!
+	if (what < Tree->key) // ГЁГ±ГЄГ ГІГј Гў ГЇГ®Г¤Г¤ГҐГ°ГҐГўГјГїГµ
 		return Search(Tree->left, what);
 	else return Search(Tree->right, what);
 }
-void AddToTree(pnode& Tree, node data) // добавляемый ключ
+void AddToTree(pnode& Tree, node data) // Г¤Г®ГЎГ ГўГ«ГїГҐГ¬Г»Г© ГЄГ«ГѕГ·
 {
 	if (!Tree) {
-		Tree = new node; // создать новый узел
+		Tree = new node; // Г±Г®Г§Г¤Г ГІГј Г­Г®ГўГ»Г© ГіГ§ГҐГ«
 		Tree->key = data.key;
 		Tree->name = data.name;
 		Tree->description = data.description;
@@ -117,7 +118,7 @@ void AddToTree(pnode& Tree, node data) // добавляемый ключ
 		Tree->right = NULL;
 		return;
 	}
-	if (data.key < Tree->key) // добавить в нужное поддерево
+	if (data.key < Tree->key) // Г¤Г®ГЎГ ГўГЁГІГј Гў Г­ГіГ¦Г­Г®ГҐ ГЇГ®Г¤Г¤ГҐГ°ГҐГўГ®
 		AddToTree(Tree->left, data);
 	else AddToTree(Tree->right, data);
 }
@@ -126,38 +127,38 @@ int main() {
 	SetConsoleOutputCP(1251);
 	node myobjects[] =
 	{ 
-		{1,"данные_1","опис_1"},
-		{2,"данные_2","опис_2"},
-		{3,"данные_3","опис_3"},
-		{4,"данные_4","опис_4"},
-		{5,"данные_5","опис_5"},
-		{6,"данные_6","опис_6"},
-		{7,"данные_7","опис_7"},
-		{8,"данные_8","опис_8"},
-		{9,"данные_9","опис_9"}
+		{1,"Г¤Г Г­Г­Г»ГҐ_1","Г®ГЇГЁГ±_1"},
+		{2,"Г¤Г Г­Г­Г»ГҐ_2","Г®ГЇГЁГ±_2"},
+		{3,"Г¤Г Г­Г­Г»ГҐ_3","Г®ГЇГЁГ±_3"},
+		{4,"Г¤Г Г­Г­Г»ГҐ_4","Г®ГЇГЁГ±_4"},
+		{5,"Г¤Г Г­Г­Г»ГҐ_5","Г®ГЇГЁГ±_5"},
+		{6,"Г¤Г Г­Г­Г»ГҐ_6","Г®ГЇГЁГ±_6"},
+		{7,"Г¤Г Г­Г­Г»ГҐ_7","Г®ГЇГЁГ±_7"},
+		{8,"Г¤Г Г­Г­Г»ГҐ_8","Г®ГЇГЁГ±_8"},
+		{9,"Г¤Г Г­Г­Г»ГҐ_9","Г®ГЇГЁГ±_9"}
 	};
 	pnode tree;
 	int n = sizeof(myobjects) / sizeof(myobjects[0]);
 	tree = maketree(myobjects, 0, n);
-	cout << "\t\tДерево построено!" << endl;
+	cout << "\t\tГ„ГҐГ°ГҐГўГ® ГЇГ®Г±ГІГ°Г®ГҐГ­Г®!" << endl;
 
-	cout << "______________Обходим бинарное дерево ЛКП_____________________________" << endl;
+	cout << "______________ГЋГЎГµГ®Г¤ГЁГ¬ ГЎГЁГ­Г Г°Г­Г®ГҐ Г¤ГҐГ°ГҐГўГ® Г‹ГЉГЏ_____________________________" << endl;
 	print_lkp(tree);
 
-	cout << "______________Конвертируем бинарное дерево в дерево поиска____________" << endl;
+	cout << "______________ГЉГ®Г­ГўГҐГ°ГІГЁГ°ГіГҐГ¬ ГЎГЁГ­Г Г°Г­Г®ГҐ Г¤ГҐГ°ГҐГўГ® Гў Г¤ГҐГ°ГҐГўГ® ГЇГ®ГЁГ±ГЄГ ____________" << endl;
 	convertToBST(tree);
 	print_lkp(tree);
 	cout<<endl;
 
-	cout << "______________Информация о дереве_____________________________________" << endl;
-	cout << " Корень дерева: " << endl;
+	cout << "______________Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї Г® Г¤ГҐГ°ГҐГўГҐ_____________________________________" << endl;
+	cout << " ГЉГ®Г°ГҐГ­Гј Г¤ГҐГ°ГҐГўГ : " << endl;
 	cout << tree->name << " key: " << tree->key << endl;
 
-	cout << "______________Поиск по дереву_________________________________________" << endl;
-	cout << " Элемент " << Search(tree, 1)->name<<" по адресу: "<<Search(tree,1)<<endl;
+	cout << "______________ГЏГ®ГЁГ±ГЄ ГЇГ® Г¤ГҐГ°ГҐГўГі_________________________________________" << endl;
+	cout << " ГќГ«ГҐГ¬ГҐГ­ГІ " << Search(tree, 1)->name<<" ГЇГ® Г Г¤Г°ГҐГ±Гі: "<<Search(tree,1)<<endl;
 
-	cout << "______________Добавление элементов в дерево поиска____________________" << endl;
-	AddToTree(tree, node{5,"данные_новые","опис_новое"});
+	cout << "______________Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Гў Г¤ГҐГ°ГҐГўГ® ГЇГ®ГЁГ±ГЄГ ____________________" << endl;
+	AddToTree(tree, node{5,"Г¤Г Г­Г­Г»ГҐ_Г­Г®ГўГ»ГҐ","Г®ГЇГЁГ±_Г­Г®ГўГ®ГҐ"});
 	AddToTree(tree, {});
 	print_lkp(tree);
 	cout << endl;
